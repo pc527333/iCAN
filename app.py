@@ -51,9 +51,9 @@ col1, col_spacer_1, col2, col_spacer_2, = st.columns((1, 0.2, 0.6, 0.4))
 # header_fontsize = 21.3
 
 #W
-font_size_1 = col2.slider("Name font size:", min_value=10.0, max_value=15.0, value=12.7, step = 0.1)
-font_size_2 = col2.slider("Credentials font size:", min_value=6.0, max_value=12.6, value=7.1, step = 0.1)
-font_size_4 = col2.slider("Title font size:", min_value=6.0, max_value=12.6, value=7.0, step = 0.1)
+font_size_1 = col2.slider("Name font size:", min_value=10.0, max_value=15.0, value=11.5, step = 0.1)
+font_size_2 = col2.slider("Credentials font size:", min_value=6.0, max_value=12.6, value=7.0, step = 0.1)
+font_size_4 = col2.slider("Title font size:", min_value=6.0, max_value=12.6, value=8.0, step = 0.1)
 font_size_3 = col2.slider("Contact info font size:", min_value=6.0, max_value=11.0, value=7.7, step = 0.1)
 # image_size = col2.slider("Image size:", min_value=100, max_value=160, value=120, step = 1)
 col2.write('###')
@@ -203,18 +203,18 @@ def create_pdfs(file_dict, text_size, section_text_size, header_fontsize):
     vertical_distance_between_fields_3 = 24
 
     #W
-    font_path_1 = 'assets/MavenPro-ExtraBold.ttf'
-    font_path_2 = 'assets/MavenPro-Bold.ttf'
-    font_path_3 = 'assets/MavenPro-Medium.ttf'
-    font_path_4 = 'assets/MavenPro-Regular.ttf'
-    font_path_5 = 'assets/Maven Pro Light - 300.otf'
+    font_path_1 = 'assets/Brandon Grotesque Bold.otf'
+    font_path_2 = 'assets/BrandonGrotesque-Regular.otf'
+    font_path_3 = 'assets/FilsonProBlack.otf'
+    # font_path_4 = 'assets/MavenPro-Regular.ttf'
+    # font_path_5 = 'assets/Maven Pro Light - 300.otf'
 
 
     font_1 = fitz.Font("font1", font_path_1) #fitz.Font("NoeDisplayBoldCheck", "NoeDisplay-Bold.ttf")
     font_2 = fitz.Font("font2", font_path_2) #fitz.Font("PoppinsRegularCheck", "Poppins-Light.otf")
     font_3 = fitz.Font("font3", font_path_3) #fitz.Font("NoeDisplayBoldCheck", "NoeDisplay-Bold.ttf")
-    font_4 = fitz.Font("font4", font_path_4) #f
-    font_5 = fitz.Font("font5", font_path_5)
+    # font_4 = fitz.Font("font4", font_path_4) #f
+    # font_5 = fitz.Font("font5", font_path_5)
 
     # font_1_char = ttLib.TTFont(font_path_1)
     # font_2_char = ttLib.TTFont(font_path_2)
@@ -669,32 +669,26 @@ def create_pdfs(file_dict, text_size, section_text_size, header_fontsize):
                     #PAGE 1
 
                     #W
-
                     page = doc[0]
                     page.wrap_contents()
                     page.insert_font("font1", font_path_1)
                     page.insert_font("font2", font_path_2)
                     page.insert_font("font3", font_path_3)
-                    page.insert_font("font4", font_path_4)
-                    page.insert_font("font5", font_path_5)
-
-                    #y = start_y - vertical_distance_between_people
-
-                    # info_list_1 = get_split_string_or_empty_list(r["Email"], my_font = font_2, my_font_size = font_size_3, input_x = 82, )
-                    # info_list_2 = get_split_string_or_empty_list(r["Phone"], my_font = font_2, my_font_size = font_size_3, input_x = 82, )
+                    # page.insert_font("font4", font_path_4)
+                    # page.insert_font("font5", font_path_5)
 
                     x = 103
                     color = (1, 1, 1) # (0.0627451, 0.18039216, 0.2627451) #
                     # color = (0, 0, 0)
 
-                    insert_text_(name, x, 23, font_path_1, 'font2', font_size_1, color = color, ) #  (0.0627451, 0.18039216, 0.2627451)
-                    insert_text_(r["Credentials"], x, 30.5, font_path_4, 'font5', font_size_2, color = color, )
-                    insert_text_(r["Title"], x, 44, font_path_3, 'font3', font_size_4, color = color, )
+                    insert_text_(name, x, 23, font_path_1, 'font3', font_size_1, color = color, ) #  (0.0627451, 0.18039216, 0.2627451)
+                    insert_text_(r["Credentials"], x+1, 30.5, font_path_2, 'font2', font_size_2, color = color, )
+                    insert_text_(r["Title"], x, 44, font_path_3, 'font1', font_size_4, color = color, )
 
                     x = 119
-                    insert_text_(r["Info field 1 (phone)"], x, 84.5, font_path_4, 'font4', font_size_3, color = color, )
-                    insert_text_(r["Info field 2 (email)"], x, 100.5, font_path_4, 'font4', font_size_3, color = color, )
-                    insert_text_(r["Info field 3 (url)"], x, 116.5, font_path_4, 'font4', font_size_3, color = color, )
+                    insert_text_(r["Info field 1 (phone)"], x, 84.5, font_path_2, 'font2', font_size_3, color = color, )
+                    insert_text_(r["Info field 2 (email)"], x, 100.5, font_path_2, 'font2', font_size_3, color = color, )
+                    insert_text_(r["Info field 3 (url)"], x, 116.5, font_path_2, 'font2', font_size_3, color = color, )
 
                     # for i, info in enumerate(get_split_string_or_empty_list(r["Title"], my_font = font_3, my_font_size = font_size_2, input_x = 82, )):
                     #     y = 61
